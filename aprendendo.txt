@@ -32,3 +32,25 @@ whoami
 
 # dar permissão para o usuario rodar o script hello.py
 chmod +x hello.py 
+
+
+# Gerar e adionar uma chave SSH no github
+
+# gerar chave rsa para adicionar no github
+ssh-keygen.exe -t rsa -C "<endereço de e-mail, mesmo do github>"
+
+# editar o arquivo e copiar a chave para colocar no github
+cat /c/Users/ferfa/.ssh/id_rsa.pub
+
+# remover o arquivo
+rm /c/Users/ferfa/.ssh/known_hosts
+
+# depois que adicionou a chave no github, testar
+ssh -T git@github.com
+
+
+# pep 8
+
+# sobrescreve a variavel de ambiente LANG do SO e passa para o
+# python executar
+LANG=it_IT python hello.py
