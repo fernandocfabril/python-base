@@ -67,3 +67,7 @@ python -m venv .venv
 
 # ativar o ambiente virtual
 source .venv/Scripts/activate
+
+# instalando o ipyhton
+# pypi.org - repositorio dos projetos que podem ser instaldos com pip
+ python -m pip install  ipython
