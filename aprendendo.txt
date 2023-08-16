@@ -54,3 +54,16 @@ ssh -T git@github.com
 # sobrescreve a variavel de ambiente LANG do SO e passa para o
 # python executar
 LANG=it_IT python hello.py
+
+
+# mostra onde o python esta instalado
+which.exe python
+
+# criar ambiente virtual
+# .venv é o nome da pasta que vai conter os arquivos do
+# python, é uma convenção no mundo python
+# o . no inicio é para indicar que a pasta é oculta
+python -m venv .venv
+
+# ativar o ambiente virtual
+source .venv/Scripts/activate
