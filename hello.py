@@ -25,11 +25,45 @@ __license__ = "Unlicense"
 # Dunder = double underline
 
 import os
+import sys
+
+arguments = {
+    "lang": None,
+    "count": 1,
+}
+# pega os arqumentos a partir da posição 1
+for arg in sys.argv[1:]:
+    # TODO: Tratar ValueErro
+    # desempacotar
+    key, value = arg.split("=")
+    # remove todos os "-" a esquerda do argumento
+    # transforma o argumento em minusculo
+    # elimina os espaçoes em branco
+    key = key.lstrip("-").lower().strip()
+    # elimina os espaçoes em branco
+    value = value.strip()
+    print(f"{key} -> {value}")
+    if key not in arguments:
+        print(f"Invalid options '{key}'")
+        # aborta o programa
+        sys.exit()
+    arguments[key] = value
+
+    
 
 # pega a variavel de ambiente LANG, até os 5 primeiros caracteres
 # se a variavel de ambiente não estiver definida, define o valor
 # padrão "pt_BR"
-current_language = os.getenv("LANG", "pt_BR")[:5]
+current_language = arguments["lang"]
+if current_language == None:
+    # verifica se LANG existe nas variaveis de ambiente
+    if 'LANG' in os.environ:
+        current_language = os.getenv("LANG", "pt_BR")
+    else: # pedi para o usuário digitar uma linguagem
+        current_language = input("Choose a language: ")
+
+# pega as 5 primeiras posições    
+current_language = current_language[:5]
 
 msg = {
     "en_US": "Hello, World!",
@@ -51,4 +85,4 @@ msg = {
 
 # Define o bloco principal de um programa python
 if __name__ == "__main__":
-    print(msg[current_language])
+    print(msg[current_language] * int(arguments["count"]))
