@@ -1,27 +1,33 @@
+#!/user/bin/env python
+""" Imprime a mensagem de um e-mail
+"""
+
 # https://pyformat.info
 
-email_tmpl = """
-    Olá, %(nome)s
+import os
+import sys
 
-    Tem interesse em comprar o %(produto)s?
+arguments = sys.argv[1:]
+if not arguments:
+    print("Informar o nome do arquivo de e-mails e do template")
+    sys.exit(1)
 
-    Este produto é ótimo para resolver
-    %(texto)s
+filename = arguments[0]
+templatename = arguments[1]
 
-    Clique agora em %(link)s
+path = os.curdir
+filepath = os.path.join(path, filename)
+templatepath = os.path.join(path, templatename)
 
-    Apenas %(quantidade)03d disponiveis!
 
-    Preço promocional %(preco).2f
-    """
+for line in open(filepath):
+    name, email = line.split(",")
 
-clientes = ["Maria", "Joao", "Bruno"]
-
-for cliente in clientes:
+    print(f"Enviando e-mail para {email}")
     print(
-        email_tmpl
+        open(templatepath).read()
         %{
-            "nome": cliente,
+            "nome": name,
             "produto": "caneta",
             "texto": "Escrever muito bem",
             "link": "https://canetaslegais.com",
@@ -29,3 +35,5 @@ for cliente in clientes:
             "preco": 50.5236
         }
     )
+    print("-" * 50)
+    print()
