@@ -71,3 +71,11 @@ source .venv/Scripts/activate
 # instalando o ipyhton
 # pypi.org - repositorio dos projetos que podem ser instaldos com pip
  python -m pip install  ipython
+
+
+ # mostra todo os arquivos que tem a palavara "TODO:"
+ git grep "TODO:"
+
+# o comando echo mostrar na tela alguma coisa ou
+# direciona para um arquivo quando se usa >> nome_arquivo.txt
+ echo "qualquer coisa" >> <nome arquivo>.txt

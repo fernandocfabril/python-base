@@ -12,9 +12,10 @@ Tenha a variável LANG devidamente configurada ex:
     export LANG=pt_BR
 
 Execução:
-    python hello.py
+    python hello.py --lang=pt_BR
     ou
-    ./hello.py
+    ./hello.py --lang=pt_BR
+
 """
 
 # Metados
@@ -34,8 +35,14 @@ arguments = {
 # pega os arqumentos a partir da posição 1
 for arg in sys.argv[1:]:
     # TODO: Tratar ValueErro
-    # desempacotar
-    key, value = arg.split("=")
+    try:
+        # desempacotar
+        key, value = arg.split("=")
+    except ValueError as e:
+        print(f"[ERROR] {str(e)}")
+        print("You nee use --key=value")
+        sys.exit(1)
+
     # remove todos os "-" a esquerda do argumento
     # transforma o argumento em minusculo
     # elimina os espaçoes em branco
@@ -85,4 +92,22 @@ msg = {
 
 # Define o bloco principal de um programa python
 if __name__ == "__main__":
-    print(msg[current_language] * int(arguments["count"]))
+    try:
+        message = msg[current_language]
+    except KeyError as e:
+        print(f"[ERROR] {str(e)}")
+        print(f"Language is invalid, choose from: {list(msg.keys())}")
+        sys.exit(1)
+
+""" 
+uma alternativa ao try execpt seria usar o comando:
+
+message = msg.get(current_language, msg["en_US])
+
+nesse caso tenta buscar a current_language e se não achar
+traz um valor padrão.
+
+isso é possível em dicionários utilizando o comando get
+"""
+
+    print(message * int(arguments["count"]))

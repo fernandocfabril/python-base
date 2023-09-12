@@ -27,10 +27,11 @@ n2: 4
 
 __version__ = "0.2.0"
 
+from datetime import datetime
+import os
 import sys
 arguments = sys.argv[1:]
 
-# TODO: Exceptions
 if not arguments:
     operation = input("operação: ")
     n1 = input("n1: ")
@@ -73,3 +74,7 @@ elif operation == "div":
     result = n1 / n2
 
 print(f"O resultado da operação é = {result}")
+
+path = os.curdir
+filepath = os.path.join(path, "prefixcalc.log")
+timestamp

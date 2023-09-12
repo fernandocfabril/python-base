@@ -1,0 +1,4 @@
+minha nota	geral	minha primeira nota
+Minha primeira nota	geral	minha primeira nota
+Minha segunda nota	tech	python é legal
+Minha segunda nota	geral	minha 2 nota
